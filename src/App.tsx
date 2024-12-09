@@ -10,6 +10,7 @@ import SearchDetails from './Search/Details/index.tsx';
 import SearchBarResults from './Search/SearchBarResults/index.tsx';
 import { Provider } from 'react-redux';
 import store from './store.ts';
+import CreatePost from './CreatePost/index.tsx';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/search/" element={<Search />} />
           <Route path="/details/:airportCode" element={<SearchDetails />} />
           <Route path="/profile/" element={<Profile />} />
+          <Route path="/createPost/" element={<CreatePost />} />
         </Routes>
       </Router>
     </Provider>

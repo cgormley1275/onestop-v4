@@ -18,7 +18,7 @@ export default function SignIn() {
         try {
             const user = await client.signin(credentials);
             dispatch(setCurrentUser(user));
-            navigate("/search");
+            navigate("/profile");
         } catch (error) {
             return;
         }
