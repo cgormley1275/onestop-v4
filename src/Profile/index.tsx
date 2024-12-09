@@ -3,6 +3,7 @@ import ProfileFriends from "./ProfileFriends.tsx"
 import ProfileInfo from "./ProfileInfo.tsx"
 import ProfilePosts from "./ProfilePosts.tsx"
 import { useSelector } from "react-redux";
+import Nav from "../Nav/index.tsx";
 
 
 export default function Profile() {
@@ -11,6 +12,7 @@ export default function Profile() {
     const { currentUser } = useSelector((state: any) => state.userReducer);
     return (
         <div >
+            <Nav/>
             <h1>Profile</h1>
             <div className="flex w-full h-screen">
                 <ProfileInfo/>

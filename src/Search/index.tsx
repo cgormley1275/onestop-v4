@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import * as client from "./client.ts";
 import React from "react";
 import { useSelector } from "react-redux";
+import Nav from "../Nav/index.tsx";
 
 export default function Search() {
     const [search_params, setSearch_params] = useState({ origin: "MAD", one_way: false, nonstop: false, max_price: 999999 });
@@ -39,6 +40,7 @@ export default function Search() {
     return (
         <div>
             {/* <h1>{auth.user ? auth.user.loginId : 'No User!'}</h1> */}
+            <Nav/>
             <h1>Search</h1>
             <h2>hello {currentUser.username}</h2>
             <form action="">

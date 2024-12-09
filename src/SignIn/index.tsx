@@ -4,6 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as client from "./client.ts";
 import { setCurrentUser } from './reducer.ts';
+import Nav from "../Nav/index.tsx";
 
 export default function SignIn() {
     const { currentUser } = useSelector((state: any) => state.userReducer);
@@ -17,7 +18,7 @@ export default function SignIn() {
         try {
             const user = await client.signin(credentials);
             dispatch(setCurrentUser(user));
-            navigate("/profile");
+            navigate("/search");
         } catch (error) {
             return;
         }
@@ -35,6 +36,7 @@ export default function SignIn() {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen">
+            <Nav/>
             <h1 className="text-3xl mb-4">Sign In</h1>
             <form className="flex flex-col space-y-4">
                 <input
@@ -66,7 +68,7 @@ export default function SignIn() {
                     Back to Home Screen
                 </button>
             </form>
-            <div>{currentUser.username}</div>
+            <div>hello {currentUser.username}</div>
         </div>
     );
 };
