@@ -44,7 +44,7 @@ export default function SearchDetails() {
                 {posts && posts.map((object: any) => (
                     <div>
                         <li className="border">
-                            <div>{object.photo}</div>
+                            {/* <div>{object.photo}</div> */}
                             <div>{object.destinationCity}, {object.destinationCountry}</div>
                             <div>{object.caption}</div>
                             <div>{object.poster}</div>

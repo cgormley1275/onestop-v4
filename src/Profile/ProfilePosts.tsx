@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
 import * as client from "./client.ts";
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function ProfilePosts() {
-    const currentUser = "mike_lappas1"
-    // const currentUser = "test";
+    const { currentUser } = useSelector((state: any) => state.userReducer);
+    // const currentUser = "mike_lappas1";
     const [posts, setPosts] = useState<any>();
     const getPostsForUser = async (user:String) => {
-        const response = await client.findPostsByUser(currentUser);
+        const response = await client.findPostsByUser(currentUser.username);
         setPosts(response);
     }
     useEffect(() => {

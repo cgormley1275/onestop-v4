@@ -8,20 +8,25 @@ import Search from './Search/index.tsx';
 import Profile from './Profile/index.tsx';
 import SearchDetails from './Search/Details/index.tsx';
 import SearchBarResults from './Search/SearchBarResults/index.tsx';
+import { Provider } from 'react-redux';
+import store from './store.ts';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin/" element={<SignIn />} />
-        <Route path="/signup/" element={<SignUp />} />
-        <Route path="/search/:query" element={<SearchBarResults />} />
-        <Route path="/search/" element={<Search />} />
-        <Route path="/details/:airportCode" element={<SearchDetails />} />
-        <Route path="/profile/" element={<Profile />} />
-      </Routes>
-    </Router>
+    <Provider store = {store}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin/" element={<SignIn />} />
+          <Route path="/signup/" element={<SignUp />} />
+          <Route path="/search/:query" element={<SearchBarResults />} />
+          <Route path="/search/" element={<Search />} />
+          <Route path="/details/:airportCode" element={<SearchDetails />} />
+          <Route path="/profile/" element={<Profile />} />
+        </Routes>
+      </Router>
+    </Provider>
+
   );
 }
 

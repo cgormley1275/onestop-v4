@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import * as client from "./client.ts";
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function ProfileFriends() {
-    const currentUser = "mike_lappas1"
+    const { currentUser } = useSelector((state: any) => state.userReducer);
     const [friends, setFriends] = useState<any>();
     const findFriendsByUsername = async (username: String) => {
         const response = await client.findFriendsByUsername(username);
@@ -11,7 +12,7 @@ export default function ProfileFriends() {
     }
 
     useEffect(() => {
-        findFriendsByUsername(currentUser);
+        findFriendsByUsername(currentUser.username);
     }, []);
     return (
         <div className="w-3/12">
