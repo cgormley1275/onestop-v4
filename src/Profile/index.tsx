@@ -14,7 +14,7 @@ export default function Profile() {
             <Nav />
             <h1>Profile</h1>
             {!profileUsername && <Link to="/createPost">
-                <button>Create New Post</button>
+                {currentUser.role !== "BASIC" && <button>Create New Post</button>}
             </Link>}
 
             <div className="flex w-full h-screen">
