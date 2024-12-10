@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import * as searchClient from "../client.ts"
 import React from "react";
+import Nav from "../../Nav/index.tsx";
 
 export default function SearchDetails() {
     const { airportCode } = useParams();
@@ -36,6 +37,7 @@ export default function SearchDetails() {
     }, []);
     return (
         <div>
+            <Nav/>
             <h1>Search Results</h1>
             <h2>{locationData && locationData != -1 && JSON.stringify(locationData.name)}</h2>
             <h2>{locationData && locationData != -1 && JSON.stringify(locationData.address.countryName)}</h2>

@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react"
 import * as client from "./client.ts";
 import React from "react";
-import { useSelector } from "react-redux";
+import * as homeClient from "../Home/client.ts";
+import { useDispatch, useSelector } from "react-redux";
+import Nav from "../Nav/index.tsx";
+import { setCurrentUser, setCurrentUserLikes } from "../SignIn/reducer.ts";
+import { Link } from "react-router-dom";
 
 export default function ProfilePosts(profileUsername?) {
+    const dispatch = useDispatch();
     const { currentUser } = useSelector((state: any) => state.userReducer);
-    // const currentUser = "mike_lappas1";
     const [posts, setPosts] = useState<any>();
+    const [userLikesObjects, setUserLikesObjects] = useState(currentUser.likes);
+    let userLikes;
+    if (userLikesObjects) {
+        userLikes = userLikesObjects.map((likeItem: any) => (
+            likeItem.post
+        ))
+    } else {userLikes = []}
     const getPostsForUser = async (user: String) => {
         if (profileUsername.profileUsername) {
             const response = await client.findPostsByUser(profileUsername.profileUsername);
@@ -15,6 +26,12 @@ export default function ProfilePosts(profileUsername?) {
             const response = await client.findPostsByUser(currentUser.username);
             setPosts(response);
         }
+    }
+    const likePost = async (pid: string, uid: string) => {
+        const newLike = await homeClient.likePost(pid, uid);
+        setUserLikesObjects([...userLikesObjects, newLike]);
+        dispatch(setCurrentUserLikes([...currentUser.likes, newLike]));
+
     }
     useEffect(() => {
         getPostsForUser(currentUser);
@@ -31,6 +48,8 @@ export default function ProfilePosts(profileUsername?) {
                         <div>{post.poster}</div>
                         <div>{post.caption}</div>
                         <div>{post.destinationCity}, {post.destinationCountry}</div>
+                        {!userLikes.includes(post._id) && <button onClick={(() => { likePost(post._id, currentUser._id) })}>Like</button>}
+                        {userLikes.includes(post._id) && <div>Liked!</div>}
                     </li>
                 ))}
             </ul>
