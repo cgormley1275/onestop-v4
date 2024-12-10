@@ -34,6 +34,7 @@ export default function Search() {
         }
     };
     const getAllSearchHistory = async () => {
+        console.log(currentUser)
         const response = await client.findAllSearchHistory();
         setHistory(response)
     }

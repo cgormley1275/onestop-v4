@@ -32,7 +32,6 @@ export default function Home() {
     }
     useEffect(() => {
         getAllPosts();
-        console.log(currentUser)
     }, []);
     return (
         <div>

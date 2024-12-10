@@ -11,21 +11,22 @@ import SearchBarResults from './Search/SearchBarResults/index.tsx';
 import { Provider } from 'react-redux';
 import store from './store.ts';
 import CreatePost from './CreatePost/index.tsx';
+import ProtectedRoute from './SignIn/ProtectedRoute.tsx';
 
 function App() {
   return (
-    <Provider store = {store}>
+    <Provider store={store}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin/" element={<SignIn />} />
           <Route path="/signup/" element={<SignUp />} />
-          <Route path="/search/:query" element={<SearchBarResults />} />
-          <Route path="/search/" element={<Search />} />
-          <Route path="/details/:airportCode" element={<SearchDetails />} />
-          <Route path="/profile/" element={<Profile />} />
-          <Route path="/profile/:username" element={<Profile />} />
-          <Route path="/createPost/" element={<CreatePost />} />
+          <Route path="/search/:query" element={<ProtectedRoute><SearchBarResults /></ProtectedRoute>} />
+          <Route path="/search/" element={<ProtectedRoute><Search /></ProtectedRoute>} />
+          <Route path="/details/:airportCode" element={<ProtectedRoute><SearchDetails /></ProtectedRoute>} />
+          <Route path="/profile/" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/profile/:username" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/createPost/" element={<ProtectedRoute><CreatePost /></ProtectedRoute>} />
         </Routes>
       </Router>
     </Provider>
