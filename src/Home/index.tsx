@@ -40,7 +40,6 @@ export default function Home() {
             <div>Home</div>
             <div className="w-6">
                 <div className="justify-center">Posts</div>
-                <div>Likes:{JSON.stringify(currentUser.likes)}</div>
                 <br />
                 <ul>
                     {posts && posts.length > 0 && posts.map((post: any) => (

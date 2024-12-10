@@ -22,7 +22,6 @@ export default function ProfileFriends(profileUsername?) {
     return (
         <div className="w-3/12">
             <div className="justify-center">Friends</div>
-            <div>Profile: {`${(profileUsername.profileUsername)}`}</div>
             <br />
             <ul>
                 {friends && friends.length > 0 && friends.map((friend: any) => (

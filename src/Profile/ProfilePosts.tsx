@@ -22,7 +22,6 @@ export default function ProfilePosts(profileUsername?) {
     return (
         <div className="w-6">
             <div className="justify-center">Posts</div>
-            <div>Profile: {`${profileUsername.profileUsername}`}</div>
             <br />
             <ul>
                 {posts && posts.length > 0 && posts.map((post: any) => (

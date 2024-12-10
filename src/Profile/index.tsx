@@ -13,17 +13,15 @@ export default function Profile() {
         <div >
             <Nav />
             <h1>Profile</h1>
-            <Link to="/createPost">
+            {!profileUsername && <Link to="/createPost">
                 <button>Create New Post</button>
-            </Link>
+            </Link>}
 
             <div className="flex w-full h-screen">
                 <ProfileInfo profileUsername={profileUsername as string}/>
                 <ProfilePosts profileUsername={profileUsername as string}/>
                 <ProfileFriends profileUsername={profileUsername as string}/>
             </div>
-            <div>hello {currentUser.username}</div>
-            <div>Profile: {`${profileUsername}`}</div>
         </div>
     )
 }
