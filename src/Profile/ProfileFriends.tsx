@@ -3,12 +3,17 @@ import * as client from "./client.ts";
 import React from "react";
 import { useSelector } from "react-redux";
 
-export default function ProfileFriends() {
+export default function ProfileFriends(profileUsername?) {
     const { currentUser } = useSelector((state: any) => state.userReducer);
     const [friends, setFriends] = useState<any>();
     const findFriendsByUsername = async (username: String) => {
-        const response = await client.findFriendsByUsername(username);
-        setFriends(response);
+        if (profileUsername.profileUsername) {
+            const response = await client.findFriendsByUsername(profileUsername.profileUsername);
+            setFriends(response);
+        } else {
+            const response = await client.findFriendsByUsername(username);
+            setFriends(response);
+        }
     }
 
     useEffect(() => {
@@ -17,6 +22,7 @@ export default function ProfileFriends() {
     return (
         <div className="w-3/12">
             <div className="justify-center">Friends</div>
+            <div>Profile: {`${(profileUsername.profileUsername)}`}</div>
             <br />
             <ul>
                 {friends && friends.length > 0 && friends.map((friend: any) => (
@@ -28,7 +34,6 @@ export default function ProfileFriends() {
                         <div>{friend.user2.role}</div>
                         <div>{friend.user2.dob}</div>
                     </li>
-                    
                 ))}
             </ul>
         </div>

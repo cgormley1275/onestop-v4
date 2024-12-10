@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom";
 
 export default function Profile() {
     const { currentUser } = useSelector((state: any) => state.userReducer);
-    const uid = useParams();
+    const profileUsername = useParams().username;
     return (
         <div >
             <Nav />
@@ -18,11 +18,12 @@ export default function Profile() {
             </Link>
 
             <div className="flex w-full h-screen">
-                <ProfileInfo />
-                <ProfilePosts />
-                <ProfileFriends />
+                <ProfileInfo profileUsername={profileUsername as string}/>
+                <ProfilePosts profileUsername={profileUsername as string}/>
+                <ProfileFriends profileUsername={profileUsername as string}/>
             </div>
             <div>hello {currentUser.username}</div>
+            <div>Profile: {`${profileUsername}`}</div>
         </div>
     )
 }

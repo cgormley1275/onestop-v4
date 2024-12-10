@@ -17,3 +17,8 @@ export const updateUser = async (uid:String, updateUser:any) => {
     const response = await axios.put(`${REMOTE_SERVER}/api/user/update/${uid}`, updateUser);
     return response.data;
 }
+
+export const findUserByUsername = async (username:string) => {
+    const response = await axios.get(`${REMOTE_SERVER}/api/user/${username}`)
+    return response.data
+}
