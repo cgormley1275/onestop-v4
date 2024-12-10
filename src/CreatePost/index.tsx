@@ -10,6 +10,8 @@ export default function CreatePost() {
     const [destinationCity, setDestinationCity] = useState("");
     const [destinationCountry, setDestinationCountry] = useState("");
     const [caption, setCaption] = useState("");
+    const [photo, setPhoto] = useState(null);
+    const [preview, setPreview] = useState(null);
     const navigate = useNavigate();
     const submitPost = async () => {
         const newPost = {
@@ -28,21 +30,22 @@ export default function CreatePost() {
             <h1>Create New Post</h1>
             <form >
                 <label htmlFor="destinationCity">Destination City:</label>
-                <input id="destinationCity" type="text" 
-                onChange={((e) => setDestinationCity(e.target.value))}
+                <input id="destinationCity" type="text"
+                    onChange={((e) => setDestinationCity(e.target.value))}
                 />
                 <br />
 
                 <label htmlFor="destinationCountry">Destination Country:</label>
-                <input id="destinationCountry" type="text" 
-                onChange={((e) => setDestinationCountry(e.target.value))}
+                <input id="destinationCountry" type="text"
+                    onChange={((e) => setDestinationCountry(e.target.value))}
                 />
                 <br />
 
                 <label htmlFor="caption">Caption:</label>
-                <textarea id="caption" 
-                onChange={((e) => setCaption(e.target.value))}
+                <textarea id="caption"
+                    onChange={((e) => setCaption(e.target.value))}
                 />
+                <br />
             </form>
             <button onClick={submitPost}>Submit</button>
         </div>

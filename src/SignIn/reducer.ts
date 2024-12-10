@@ -9,7 +9,10 @@ const userSlice = createSlice({
         setCurrentUser: (state, action) => {
             state.currentUser = action.payload;
         },
+        setCurrentUserLikes: (state, action) => {
+            state.currentUser = { ...state.currentUser, likes: action.payload };
+        },
     },
 });
-export const {setCurrentUser} = userSlice.actions;
+export const { setCurrentUser, setCurrentUserLikes } = userSlice.actions;
 export default userSlice.reducer;
