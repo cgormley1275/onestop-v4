@@ -12,3 +12,8 @@ export const findFriendsByUsername = async (username:String) => {
     const response = await axios.get(`${REMOTE_SERVER}/api/friends/${user_id}`);
     return response.data;
 } 
+
+export const updateUser = async (uid:String, updateUser:any) => {
+    const response = await axios.put(`${REMOTE_SERVER}/api/user/update/${uid}`, updateUser);
+    return response.data;
+}

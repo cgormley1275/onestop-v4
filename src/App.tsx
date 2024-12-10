@@ -24,6 +24,7 @@ function App() {
           <Route path="/search/" element={<Search />} />
           <Route path="/details/:airportCode" element={<SearchDetails />} />
           <Route path="/profile/" element={<Profile />} />
+          <Route path="/profile/:username" element={<Profile />} />
           <Route path="/createPost/" element={<CreatePost />} />
         </Routes>
       </Router>

@@ -4,6 +4,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Nav from "../Nav/index.tsx";
 import { setCurrentUser, setCurrentUserLikes } from "../SignIn/reducer.ts";
+import { Link } from "react-router-dom";
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -43,10 +44,11 @@ export default function Home() {
                 <br />
                 <ul>
                     {posts && posts.length > 0 && posts.map((post: any) => (
-                        <li id={post._id} className="list-group-item border m-2">
+                        <li key={post._id} className="list-group-item border m-2">
                             {/* <div>{post.photo}</div> */}
                             {/* <img src={`${post.photo}`} alt="" /> */}
-                            <div>{post.poster}</div>
+                            <Link to={`/profile/${post.poster}`}>{post.poster}</Link>
+                            {/* <div>{post.poster}</div> */}
                             <div>{post.caption}</div>
                             <div>{post.destinationCity}, {post.destinationCountry}</div>
                             {currentUser.username && !userLikes.includes(post._id) && <button onClick={(() => { likePost(post._id, currentUser._id) })}>Like</button>}

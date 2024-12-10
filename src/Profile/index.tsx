@@ -4,10 +4,11 @@ import ProfileInfo from "./ProfileInfo.tsx"
 import ProfilePosts from "./ProfilePosts.tsx"
 import { useSelector } from "react-redux";
 import Nav from "../Nav/index.tsx";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function Profile() {
     const { currentUser } = useSelector((state: any) => state.userReducer);
+    const uid = useParams();
     return (
         <div >
             <Nav />
