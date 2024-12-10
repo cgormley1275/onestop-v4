@@ -3,8 +3,10 @@ import { useParams } from "react-router";
 import * as searchClient from "../client.ts"
 import React from "react";
 import Nav from "../../Nav/index.tsx";
+import { useSelector } from "react-redux";
 
 export default function SearchDetails() {
+    const { currentUser } = useSelector((state: any) => state.userReducer);
     const { airportCode } = useParams();
     const [locationData, setLocationData] = useState<any>();
     const [posts, setPosts] = useState<any>();
@@ -16,16 +18,16 @@ export default function SearchDetails() {
     const getCityFromAirportCode = async () => {
         if (airportCode) {
             const response = await searchClient.get_airport_city_details(airportCode);
-            setLocationData(response[0]);
-            return response[0]
+            if (response.length > 0) {
+                setLocationData(response[0]);
+                return response[0]
+            } else {
+                setLocationData(-1);
+            }
         } else {
             throw ("Missing airportCode");
         }
     };
-    // const findRelatedPostsByCity = async (city:String) => {
-    //     const response = await searchClient.findPostsByCity(city);
-    //     setPosts(response);
-    // }
     const findRelatedPostsByCityAndCountry = async (city: String, country: String) => {
         const response = await searchClient.findPostsByCityAndCountry(city, country);
         setPosts(response);
@@ -37,10 +39,10 @@ export default function SearchDetails() {
     }, []);
     return (
         <div>
-            <Nav/>
+            <Nav />
             <h1>Search Results</h1>
-            <h2>{locationData && locationData != -1 && JSON.stringify(locationData.name)}</h2>
-            <h2>{locationData && locationData != -1 && JSON.stringify(locationData.address.countryName)}</h2>
+            {locationData && locationData != -1 &&<h2>JSON.stringify(locationData.name)</h2>}
+            {locationData && locationData != -1 && <h2>JSON.stringify(locationData.address.countryName)</h2>}
             <br />
             <ul>
                 {posts && posts.map((object: any) => (

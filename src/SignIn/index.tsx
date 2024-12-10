@@ -19,7 +19,7 @@ export default function SignIn() {
         try {
             const user = await client.signin(credentials);
             const userLikes = await client.getUserLikes(user._id);
-            const userFriends = await profileClient.findFriendsByUsername(user.username)
+            const userFriends = await profileClient.findFriendsByUsernameNoDetails(user.username)
             dispatch(setCurrentUser(user));
             dispatch(setCurrentUserLikes(userLikes));
             dispatch(setCurrentUserFriends(userFriends));

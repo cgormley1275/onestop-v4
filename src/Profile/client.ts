@@ -11,6 +11,13 @@ export const findFriendsByUsername = async (username:String) => {
     const user_id = userResponse.data._id
     const response = await axios.get(`${REMOTE_SERVER}/api/friends/${user_id}`);
     return response.data;
+}
+
+export const findFriendsByUsernameNoDetails = async (username:String) => {
+    const userResponse = await axios.get(`${REMOTE_SERVER}/api/user/${username}`)
+    const user_id = userResponse.data._id
+    const response = await axios.get(`${REMOTE_SERVER}/api/friends/no_detail/${user_id}`);
+    return response.data;
 } 
 
 export const updateUser = async (uid:String, updateUser:any) => {
