@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as client from "./client.ts";
-import { setCurrentUser, setCurrentUserLikes } from './reducer.ts';
+import * as profileClient from "../Profile/client.ts";
+import { setCurrentUser, setCurrentUserLikes, setCurrentUserFriends } from './reducer.ts';
 import Nav from "../Nav/index.tsx";
 
 export default function SignIn() {
@@ -18,8 +19,10 @@ export default function SignIn() {
         try {
             const user = await client.signin(credentials);
             const userLikes = await client.getUserLikes(user._id);
+            const userFriends = await profileClient.findFriendsByUsername(user.username)
             dispatch(setCurrentUser(user));
             dispatch(setCurrentUserLikes(userLikes));
+            dispatch(setCurrentUserFriends(userFriends));
             navigate("/profile");
         } catch (error) {
             return;

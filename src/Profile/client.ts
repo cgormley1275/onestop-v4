@@ -22,3 +22,8 @@ export const findUserByUsername = async (username:string) => {
     const response = await axios.get(`${REMOTE_SERVER}/api/user/${username}`)
     return response.data
 }
+
+export const followFriend = async (user1: string, user2:string) => {
+    const response = await axios.post(`${REMOTE_SERVER}/api/friends/add`, {user1, user2});
+    return response.data;
+}

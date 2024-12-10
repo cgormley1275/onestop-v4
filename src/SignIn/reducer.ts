@@ -12,7 +12,10 @@ const userSlice = createSlice({
         setCurrentUserLikes: (state, action) => {
             state.currentUser = { ...state.currentUser, likes: action.payload };
         },
+        setCurrentUserFriends: (state, action) => {
+            state.currentUser = { ...state.currentUser, friends: action.payload };
+        },
     },
 });
-export const { setCurrentUser, setCurrentUserLikes } = userSlice.actions;
+export const { setCurrentUser, setCurrentUserLikes, setCurrentUserFriends } = userSlice.actions;
 export default userSlice.reducer;
